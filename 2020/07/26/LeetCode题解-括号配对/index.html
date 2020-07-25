@@ -162,7 +162,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Without an umbrella, I can only run.</p>
+        <p class="site-subtitle">Without an umbrella /n I can only run.</p>
       
   </div>
 
@@ -188,6 +188,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -478,7 +488,7 @@
                 alt="CodingPunk" />
             
               <p class="site-author-name" itemprop="name">CodingPunk</p>
-              <p class="site-description motion-element" itemprop="description">Without </p>
+              <p class="site-description motion-element" itemprop="description">A Punk loves Coding</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -762,7 +772,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "search.xml";
+    var search_path = "./public/search.xml";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
