@@ -82,132 +82,132 @@
 <meta name="description" content="浅析数据存储的演变过程，介绍Redis的基本使用和进阶使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis的前世今生">
-<meta property="og:url" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/index.html">
 <meta property="og:site_name" content="For tomorrow!!!">
 <meta property="og:description" content="浅析数据存储的演变过程，介绍Redis的基本使用和进阶使用">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408080531729.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408115004299.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408130647248.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408130854366.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408153530228.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408184618523.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408184643012.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408155018832.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408202046656.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408204003689.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408204441726.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409061635757.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409075037824.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409001118398.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409113532196.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409113353283.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409003109666.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409003158840.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409003251515.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409003647771.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409003835955.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409004151835.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409004430586.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409055641576.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409055518451.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409060700318.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409060858971.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409070846180.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409065325283.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409071145058.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409070205536.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409124546810.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409134226364.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409134757688.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409134906136.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409134757688.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409192807821.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409184326045.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409184434046.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409184326045.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409184434046.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409184326045.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409184434046.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409184434046.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409184326045.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409184434046.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409184559748.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409204042872.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409185350295.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409185449005.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409185516331.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409190426588.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409190555586.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409203930436.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409194007602.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409204523505.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409203723767.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409205031951.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409205031951.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409205154261.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409210122129.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409210100570.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200409210819329.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200410053723804.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200410053427849.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200410054646720.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200410054710442.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200410055249924.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200410055947169.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410060037405.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200410061357607.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200612124145896.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200410061613062.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200410061636588.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410063050476.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410063202681.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200411100955789.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411103336509.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411112353530.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411112228687.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200625213446538.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200411125836850.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411122241429.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200625214137737.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411123147116.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411122355696.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/1187916-20200304064424042-1801115546.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/1187916-20200304064625052-1383412525.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200411124332883.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200411125836850.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411131300663.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200626082350192.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411132308192.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411133318275.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411144422698.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411145209929.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411145222593.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175010233.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175038779.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200626090920441.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175528382.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181020297.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181101641.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181123008.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411184710813.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411184729915.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411200355740.png">
-<meta property="og:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200411201140595.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411201313150.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411203600461.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411203621238.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411204905204.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411205051120.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214604205.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214620761.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214646499.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411215324099.png">
-<meta property="article:published_time" content="2020-08-03T08:47:06.000Z">
-<meta property="article:modified_time" content="2020-08-03T08:59:28.035Z">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408080531729.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408115004299.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408130647248.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408130854366.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408153530228.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408184618523.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408184643012.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408155018832.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408202046656.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408204003689.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408204441726.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409061635757.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409075037824.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409001118398.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409113532196.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409113353283.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409003109666.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409003158840.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409003251515.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409003647771.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409003835955.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409004151835.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409004430586.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409055641576.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409055518451.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409060700318.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409060858971.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409070846180.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409065325283.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409071145058.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409070205536.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409124546810.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409134226364.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409134757688.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409134906136.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409134757688.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409192807821.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184326045.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184434046.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184326045.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184434046.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184326045.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184434046.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184434046.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184326045.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184434046.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184559748.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409204042872.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409185350295.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409185449005.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409185516331.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409190426588.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409190555586.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409203930436.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409194007602.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409204523505.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409203723767.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409205031951.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409205031951.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409205154261.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409210122129.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409210100570.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409210819329.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410053723804.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410053427849.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410054646720.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410054710442.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410055249924.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410055947169.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410060037405.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410061357607.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200612124145896.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410061613062.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410061636588.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410063050476.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410063202681.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411100955789.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411103336509.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411112353530.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411112228687.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200625213446538.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411125836850.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411122241429.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200625214137737.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411123147116.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411122355696.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/1187916-20200304064424042-1801115546.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/1187916-20200304064625052-1383412525.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411124332883.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411125836850.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411131300663.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200626082350192.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411132308192.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411133318275.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411144422698.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411145209929.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411145222593.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175010233.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175038779.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200626090920441.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175528382.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181020297.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181101641.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181123008.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411184710813.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411184729915.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411200355740.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411201140595.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411201313150.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411203600461.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411203621238.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411204905204.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411205051120.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214604205.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214620761.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214646499.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411215324099.png">
+<meta property="article:published_time" content="2020-06-15T08:47:06.000Z">
+<meta property="article:modified_time" content="2020-08-04T02:59:32.151Z">
 <meta property="article:author" content="CodingPunk">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/%E5%8F%AA%E8%A6%81%E5%AD%A6%E4%B8%8D%E6%AD%BB%20%E5%B0%B1%E5%BE%80%E6%AD%BB%E9%87%8C%E5%AD%A6/note/Redis/image/Redis/image-20200408080531729.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408080531729.png">
 
 
 
@@ -237,7 +237,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/08/03/Redis的前世今生/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/06/15/Redis的前世今生/"/>
 
 
 
@@ -406,7 +406,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CodingPunk">
@@ -435,8 +435,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-03T16:47:06+08:00">
-                2020-08-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-15T16:47:06+08:00">
+                2020-06-15
               </time>
             
 
@@ -482,12 +482,12 @@
       
 
       
-        <h2 id="Redis的前世今生"><a href="#Redis的前世今生" class="headerlink" title="Redis的前世今生"></a>Redis的前世今生</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><h4 id="数据存储演变过程"><a href="#数据存储演变过程" class="headerlink" title="数据存储演变过程"></a>数据存储演变过程</h4><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408080531729.png" alt="image-20200408080531729" style="zoom: 80%;">
+        <h2 id="Redis的前世今生"><a href="#Redis的前世今生" class="headerlink" title="Redis的前世今生"></a>Redis的前世今生</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><h4 id="数据存储演变过程"><a href="#数据存储演变过程" class="headerlink" title="数据存储演变过程"></a>数据存储演变过程</h4><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408080531729.png" alt="image-20200408080531729" style="zoom: 80%;">
 
 <ol>
 <li><strong>数据存储在文件中：</strong>查找数据造成全量扫描，受限于磁盘IO的瓶颈</li>
 <li><strong>关系型数据库：</strong>关系型数据库是行级存储，会空出来没有数据列，受限于磁盘IO的瓶颈</li>
-<li><strong>数据库放入缓存：</strong>受限于硬件，成本高<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408115004299.png" alt="image-20200408115004299" style="zoom: 80%;">
+<li><strong>数据库放入缓存：</strong>受限于硬件，成本高<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408115004299.png" alt="image-20200408115004299" style="zoom: 80%;">
 
 
 </li>
@@ -498,17 +498,17 @@
 <li>以太网, TCP/IP 的网络</li>
 </ol>
 <p>Redis的特点，对比Memcache , value有类型 , 有类型对应的方法(API) , 计算向数据移动</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408130647248.png" alt="image-20200408130647248" style="zoom:80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408130647248.png" alt="image-20200408130647248" style="zoom:80%;">
 
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a><strong>安装</strong></h4><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408130854366.png" alt="image-20200408130854366" style="zoom: 80%;">
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a><strong>安装</strong></h4><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408130854366.png" alt="image-20200408130854366" style="zoom: 80%;">
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">centos 6.x</span><br><span class="line">redis官网5.x</span><br><span class="line">http:&#x2F;&#x2F;download.redis. io&#x2F;releases&#x2F;redis-5.0.5.tar.gz</span><br><span class="line">1 , yum install wget</span><br><span class="line">2,cd ~</span><br><span class="line">3,mkdir soft</span><br><span class="line">4,cd soft</span><br><span class="line">5,wget http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-5.0.5.tar.gz</span><br><span class="line">6,tar xf redis.. tar.gz</span><br><span class="line">7,cd redis-src</span><br><span class="line">8,看README md</span><br><span class="line">9, make</span><br><span class="line">.. install gcc</span><br><span class="line">..... make distclean</span><br><span class="line">10,make</span><br><span class="line">11,cdsrc .. .生成了可执行程序</span><br><span class="line">12, cd ..</span><br><span class="line">13,make install PREFIX&#x3D;&#x2F;opt&#x2F;mashibing&#x2F;redis5</span><br><span class="line">14,vi &#x2F;etc&#x2F;profile</span><br><span class="line">export REDIS_ _HOME&#x3D; &#x2F;opt&#x2F;mashibing&#x2F;redis5</span><br><span class="line">export PATH&#x3D; $PATH:$REDIS_ _HOME&#x2F;bin</span><br><span class="line">.source &#x2F;etc&#x2F;profile</span><br><span class="line">15,cd utils</span><br><span class="line">16,.&#x2F;install_ server.sh ( 可以执行- -次或多次)</span><br><span class="line">)一个物理机中可以有多个redis实例(进程) ,通过port区分</span><br><span class="line">b)可执行程序就-份在目录,但是内存中未来的多个实例需要各自的配置文件,持久化目录等资源 c) service redis_ 6379 start&#x2F;stop&#x2F;stauts &gt; linux &#x2F;etc&#x2F;init.d&#x2F;***</span><br><span class="line">d)脚本还会帮你启动!</span><br><span class="line">17.ps -fe| grep redis</span><br></pre></td></tr></table></figure>
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408153530228.png" alt="image-20200408153530228">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408153530228.png" alt="image-20200408153530228">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408184618523.png" alt="image-20200408184618523" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408184618523.png" alt="image-20200408184618523" style="zoom:67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408184643012.png" alt="image-20200408184643012" style="zoom: 67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408184643012.png" alt="image-20200408184643012" style="zoom: 67%;">
 
 <h4 id="BIO-gt-同步非阻塞NIO-gt-多路复用NIO"><a href="#BIO-gt-同步非阻塞NIO-gt-多路复用NIO" class="headerlink" title="BIO-&gt;同步非阻塞NIO-&gt;多路复用NIO"></a><strong>BIO-&gt;同步非阻塞NIO-&gt;多路复用NIO</strong></h4><p>内核不断变化</p>
 <ol>
@@ -517,152 +517,152 @@
 <li>多路复用NIO: 内核select(), 允许一个程序监视多个文件描述符, 等待直到一个或多个文件描述符准备好, 就能触发I/O操作了 , 一次系统调用读若干个, 返回有数据的, 减少用户态内核态切换 , 选择有数据的, 直接读</li>
 <li>共享空间: 文件描述符都是累赘, 减少内核区域和用户空间之间传参, 把用户空间和内核空间建立映射, 相当于创建共享空间, 通过mmap系统调用, 红黑树+链表, 进程里有文件描述符就往红黑树里放, 内核可以看到, 把到达的放到链表里, 如果</li>
 </ol>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408155018832.png" alt="image-20200408155018832" style="zoom: 67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408155018832.png" alt="image-20200408155018832" style="zoom: 67%;">
 
 <p>Redis进程的文件描述符<br>0: 标准输入  1: 标准输出  2: 报错输出  3,4: pipe调用 5: epoll </p>
 <p>kafka: sendfile + mmap<br>零拷贝: sendfile系统调用</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408202046656.png" alt="image-20200408202046656" style="zoom: 50%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408202046656.png" alt="image-20200408202046656" style="zoom: 50%;">
 
 
 
 <p>Redis为什么快: epoll :     epoll是    <a href="https://baike.baidu.com/item/Linux内核" target="_blank" rel="noopener">Linux内核</a>    为处理大批量    <a href="https://baike.baidu.com/item/文件描述符/9809582" target="_blank" rel="noopener">文件描述符</a>    而作了改进的poll，是Linux下多路复用IO接口select/poll的增强版本，它能显著提高程序在大量    <a href="https://baike.baidu.com/item/并发连接/3763280" target="_blank" rel="noopener">并发连接</a>    中只有少量活跃的情况下的系统    <a href="https://baike.baidu.com/item/CPU/120556" target="_blank" rel="noopener">CPU</a>利用率。另一点原因就是获取事件的时候，它无须遍历整个被侦听的描述符集，只要遍历那些被内核IO事件异步唤醒而加入Ready队列的描述符集合就行了。</p>
 <p>顺序性: 每个连接内的命令顺序<br>内存寻址是ns级, 网卡是ms级, 10万倍差距, 10万连接同时时到达, 可能会产生秒级响应<br>mysql开启缓存, 想模仿redis, 性能反而会低, 多了一次判断过程, 增加了内存空间占用</p>
-<h4 id="类比Nginx"><a href="#类比Nginx" class="headerlink" title="类比Nginx"></a><strong>类比Nginx</strong></h4><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408204003689.png" alt="image-20200408204003689" style="zoom: 67%;">
+<h4 id="类比Nginx"><a href="#类比Nginx" class="headerlink" title="类比Nginx"></a><strong>类比Nginx</strong></h4><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408204003689.png" alt="image-20200408204003689" style="zoom: 67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200408204441726.png" alt="image-20200408204441726" style="zoom: 67%;">
-
-
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200408204441726.png" alt="image-20200408204441726" style="zoom: 67%;">
 
 
 
-<h3 id="5种数据类型"><a href="#5种数据类型" class="headerlink" title="5种数据类型"></a>5种数据类型</h3><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409061635757.png" alt="image-20200409061635757" style="zoom: 50%;">
 
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409075037824.png" alt="image-20200409075037824"></p>
+
+<h3 id="5种数据类型"><a href="#5种数据类型" class="headerlink" title="5种数据类型"></a>5种数据类型</h3><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409061635757.png" alt="image-20200409061635757" style="zoom: 50%;">
+
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409075037824.png" alt="image-20200409075037824"></p>
 <p>可以根据用户的指令, 看是不是和key里存的type匹配, 不匹配直接返回, 规避异常 </p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409001118398.png" alt="image-20200409001118398" style="zoom: 67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409001118398.png" alt="image-20200409001118398" style="zoom: 67%;">
 
 <p>nx: 只能新建 分布式锁<br>xx: 只能更新 </p>
-<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409113532196.png" alt="image-20200409113532196" style="zoom:67%;">
+<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409113532196.png" alt="image-20200409113532196" style="zoom:67%;">
 
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409113353283.png" alt="image-20200409113353283"></p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409003109666.png" alt="image-20200409003109666" style="zoom: 67%;">
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409113353283.png" alt="image-20200409113353283"></p>
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409003109666.png" alt="image-20200409003109666" style="zoom: 67%;">
 
 <p>二进制安全: Redis只取字节流, 一个字符一个字节</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409003158840.png" alt="image-20200409003158840" style="zoom: 80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409003158840.png" alt="image-20200409003158840" style="zoom: 80%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409003251515.png" alt="image-20200409003251515" style="zoom:80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409003251515.png" alt="image-20200409003251515" style="zoom:80%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409003647771.png" alt="image-20200409003647771" style="zoom:80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409003647771.png" alt="image-20200409003647771" style="zoom:80%;">
 
 <p>和Xshell设置有关</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409003835955.png" alt="image-20200409003835955" style="zoom:80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409003835955.png" alt="image-20200409003835955" style="zoom:80%;">
 
 <p>GETSET减少一次I/O</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409004151835.png" alt="image-20200409004151835" style="zoom:80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409004151835.png" alt="image-20200409004151835" style="zoom:80%;">
 
 <p>MSETNX原子性set, k2已经存在, 集体失败</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409004430586.png" alt="image-20200409004430586" style="zoom:80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409004430586.png" alt="image-20200409004430586" style="zoom:80%;">
 
-<h5 id="bitmap-活跃度-登录数"><a href="#bitmap-活跃度-登录数" class="headerlink" title="bitmap (活跃度|登录数)"></a>bitmap (活跃度|登录数)</h5><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409055641576.png" alt="image-20200409055641576" style="zoom:67%;">
+<h5 id="bitmap-活跃度-登录数"><a href="#bitmap-活跃度-登录数" class="headerlink" title="bitmap (活跃度|登录数)"></a>bitmap (活跃度|登录数)</h5><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409055641576.png" alt="image-20200409055641576" style="zoom:67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409055518451.png" alt="image-20200409055518451" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409055518451.png" alt="image-20200409055518451" style="zoom:67%;">
 
 <p>按位与</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409060700318.png" alt="image-20200409060700318" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409060700318.png" alt="image-20200409060700318" style="zoom:67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409060858971.png" alt="image-20200409060858971" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409060858971.png" alt="image-20200409060858971" style="zoom:67%;">
 
-<p>bitmap优势, 举例: 统计用户登录, 按位与, 统计365天, key是天<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409070846180.png" alt="image-20200409070846180"></p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409065325283.png" alt="image-20200409065325283" style="zoom: 80%;">
+<p>bitmap优势, 举例: 统计用户登录, 按位与, 统计365天, key是天<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409070846180.png" alt="image-20200409070846180"></p>
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409065325283.png" alt="image-20200409065325283" style="zoom: 80%;">
 
 <p>举例: 共计活跃用户数<br>第一天a登录, 第二天ab都登陆, 按位或统计活跃用户数, key是日期, value是用户登录情况</p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409071145058.png" alt="image-20200409071145058"></p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409070205536.png" alt="image-20200409070205536" style="zoom:80%;">
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409071145058.png" alt="image-20200409071145058"></p>
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409070205536.png" alt="image-20200409070205536" style="zoom:80%;">
 
 
 
-<h4 id="list-栈-队列"><a href="#list-栈-队列" class="headerlink" title="list (栈|队列)"></a>list (栈|队列)</h4><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409124546810.png" alt="image-20200409124546810" style="zoom:67%;">
+<h4 id="list-栈-队列"><a href="#list-栈-队列" class="headerlink" title="list (栈|队列)"></a>list (栈|队列)</h4><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409124546810.png" alt="image-20200409124546810" style="zoom:67%;">
 
 <p>同向操作: 栈<br>反向操作: 队列<br>正反索引</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409134226364.png" alt="image-20200409134226364" style="zoom: 80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409134226364.png" alt="image-20200409134226364" style="zoom: 80%;">
 
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409134757688.png" alt="image-20200409134757688" style="zoom: 80%;"><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409134906136.png" alt="image-20200409134906136"></p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409134757688.png" alt="image-20200409134757688" style="zoom: 80%;">
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409134757688.png" alt="image-20200409134757688" style="zoom: 80%;"><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409134906136.png" alt="image-20200409134906136"></p>
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409134757688.png" alt="image-20200409134757688" style="zoom: 80%;">
 ![image-20200409134906136](Redis的前世今生/image-20200409134906136.png)
 
-<h4 id="hash-点赞-收藏-详情页"><a href="#hash-点赞-收藏-详情页" class="headerlink" title="hash (点赞|收藏|详情页)"></a>hash (点赞|收藏|详情页)</h4><p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409192807821.png" alt="image-20200409192807821"></p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409184326045.png" alt="image-20200409184326045" style="zoom:80%;">
+<h4 id="hash-点赞-收藏-详情页"><a href="#hash-点赞-收藏-详情页" class="headerlink" title="hash (点赞|收藏|详情页)"></a>hash (点赞|收藏|详情页)</h4><p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409192807821.png" alt="image-20200409192807821"></p>
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184326045.png" alt="image-20200409184326045" style="zoom:80%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409184434046.png" alt="image-20200409184434046" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184434046.png" alt="image-20200409184434046" style="zoom:67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409184326045.png" alt="image-20200409184326045" style="zoom: 67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184326045.png" alt="image-20200409184326045" style="zoom: 67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409184434046.png" alt="image-20200409184434046" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184434046.png" alt="image-20200409184434046" style="zoom:67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409184326045.png" alt="image-20200409184326045" style="zoom: 67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184326045.png" alt="image-20200409184326045" style="zoom: 67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409184434046.png" alt="image-20200409184434046" style="zoom:67%;">
-
-
-
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409184434046.png" alt="image-20200409184434046" style="zoom:67%;">
-
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409184326045.png" alt="image-20200409184326045" style="zoom: 50%;">
-
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409184434046.png" alt="image-20200409184434046" style="zoom:67%;">
-
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409184559748.png" alt="image-20200409184559748" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184434046.png" alt="image-20200409184434046" style="zoom:67%;">
 
 
 
-<h4 id="set-交并差集"><a href="#set-交并差集" class="headerlink" title="set (交并差集)"></a>set (交并差集)<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409204042872.png" alt="image-20200409204042872"></h4><p>取交集</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409185350295.png" alt="image-20200409185350295" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184434046.png" alt="image-20200409184434046" style="zoom:67%;">
+
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184326045.png" alt="image-20200409184326045" style="zoom: 50%;">
+
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184434046.png" alt="image-20200409184434046" style="zoom:67%;">
+
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409184559748.png" alt="image-20200409184559748" style="zoom:67%;">
+
+
+
+<h4 id="set-交并差集"><a href="#set-交并差集" class="headerlink" title="set (交并差集)"></a>set (交并差集)<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409204042872.png" alt="image-20200409204042872"></h4><p>取交集</p>
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409185350295.png" alt="image-20200409185350295" style="zoom:67%;">
 
 <p>取并集</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409185449005.png" alt="image-20200409185449005" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409185449005.png" alt="image-20200409185449005" style="zoom:67%;">
 
 <p>取外差</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409185516331.png" alt="image-20200409185516331" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409185516331.png" alt="image-20200409185516331" style="zoom:67%;">
 
-<p>取随机, 抽奖, 正数不可重复出现, 负数可重复出现<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409190426588.png" alt="image-20200409190426588" style="zoom: 67%;"></p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409190555586.png" alt="image-20200409190555586" style="zoom:67%;">
+<p>取随机, 抽奖, 正数不可重复出现, 负数可重复出现<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409190426588.png" alt="image-20200409190426588" style="zoom: 67%;"></p>
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409190555586.png" alt="image-20200409190555586" style="zoom:67%;">
 
 <p>spop随机抽</p>
-<h4 id="sorted-set-排行榜"><a href="#sorted-set-排行榜" class="headerlink" title="sorted set (排行榜)"></a>sorted set (排行榜)</h4><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409203930436.png" alt="image-20200409203930436" style="zoom: 80%;">
+<h4 id="sorted-set-排行榜"><a href="#sorted-set-排行榜" class="headerlink" title="sorted set (排行榜)"></a>sorted set (排行榜)</h4><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409203930436.png" alt="image-20200409203930436" style="zoom: 80%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409194007602.png" alt="image-20200409194007602" style="zoom:80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409194007602.png" alt="image-20200409194007602" style="zoom:80%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409204523505.png" alt="image-20200409204523505" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409204523505.png" alt="image-20200409204523505" style="zoom:67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409203723767.png" alt="image-20200409203723767" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409203723767.png" alt="image-20200409203723767" style="zoom:67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409205031951.png" alt="image-20200409205031951" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409205031951.png" alt="image-20200409205031951" style="zoom:67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409205031951.png" alt="image-20200409205031951" style="zoom: 67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409205031951.png" alt="image-20200409205031951" style="zoom: 67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409205154261.png" alt="image-20200409205154261" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409205154261.png" alt="image-20200409205154261" style="zoom:67%;">
 
 
 
-<h5 id="跳表-随机造层"><a href="#跳表-随机造层" class="headerlink" title="跳表 (随机造层)"></a>跳表 (随机造层)</h5><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409210122129.png" alt="image-20200409210122129" style="zoom:80%;">
+<h5 id="跳表-随机造层"><a href="#跳表-随机造层" class="headerlink" title="跳表 (随机造层)"></a>跳表 (随机造层)</h5><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409210122129.png" alt="image-20200409210122129" style="zoom:80%;">
 
 <p>图错了</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409210100570.png" alt="image-20200409210100570" style="zoom: 80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409210100570.png" alt="image-20200409210100570" style="zoom: 80%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200409210819329.png" alt="image-20200409210819329" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200409210819329.png" alt="image-20200409210819329" style="zoom:67%;">
 
 
 
 <h3 id="进阶使用"><a href="#进阶使用" class="headerlink" title="进阶使用"></a>进阶使用</h3><h4 id="管道Pipeline"><a href="#管道Pipeline" class="headerlink" title="管道Pipeline"></a>管道Pipeline</h4><p>客户端连接服务端: </p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200410053723804.png" alt="image-20200410053723804" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410053723804.png" alt="image-20200410053723804" style="zoom:67%;">
 
 <p>redis 管道 pipeline 一次多条指令</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200410053427849.png" alt="image-20200410053427849" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410053427849.png" alt="image-20200410053427849" style="zoom:67%;">
 
 <h5 id="订阅发布"><a href="#订阅发布" class="headerlink" title="订阅发布"></a>订阅发布</h5><p>订阅发布, 订阅之后才能收到发布的消息</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200410054646720.png" alt="image-20200410054646720" style="zoom: 67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410054646720.png" alt="image-20200410054646720" style="zoom: 67%;">
 
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200410054710442.png" alt="image-20200410054710442" style="zoom:67%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410054710442.png" alt="image-20200410054710442" style="zoom:67%;">
 
 <p>客户端读历史消息和实时消息<br>redis实时消息, sorted list 日期排序, </p>
 <h5 id="聊天室-Redis-DB"><a href="#聊天室-Redis-DB" class="headerlink" title="聊天室 : Redis+DB"></a>聊天室 : Redis+DB</h5><p>​    接收消息: </p>
@@ -675,10 +675,10 @@
 <ul>
 <li>一份直接发到Redis的发布订阅, 一份通过Kafka写到数据库</li>
 </ul>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200410055249924.png" alt="image-20200410055249924" style="zoom: 80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410055249924.png" alt="image-20200410055249924" style="zoom: 80%;">
 
 <p>第二种方式实现聊天室: 双实例</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200410055947169.png" alt="image-20200410055947169" style="zoom: 80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410055947169.png" alt="image-20200410055947169" style="zoom: 80%;">
 
 
 
@@ -688,27 +688,27 @@
 <li>watch: 开启事务之前, 监控某个元素, 发现被更改, 后续相关指令不执行</li>
 <li>DISCARD: 放弃执行事务, 清空事务队列</li>
 </ul>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410060037405.png" alt="image-20200410060037405"></p>
-<h5 id="演示事务"><a href="#演示事务" class="headerlink" title="演示事务"></a>演示事务</h5><p>客户端1: 后开启事务, 删除k1<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200410061357607.png" alt="image-20200410061357607" style="zoom: 80%;"></p>
-<p>客户端2: 先开启事务, get不到k1<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200612124145896.png" alt="image-20200612124145896"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410060037405.png" alt="image-20200410060037405"></p>
+<h5 id="演示事务"><a href="#演示事务" class="headerlink" title="演示事务"></a>演示事务</h5><p>客户端1: 后开启事务, 删除k1<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410061357607.png" alt="image-20200410061357607" style="zoom: 80%;"></p>
+<p>客户端2: 先开启事务, get不到k1<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200612124145896.png" alt="image-20200612124145896"></p>
 <p>演示watch: k1改了, 事务不执行</p>
-<p>客户端1: 由于k1的值被更改, 相关命令不执行<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200410061613062.png" alt="image-20200410061613062" style="zoom: 80%;"></p>
-<p>客户端2:<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200410061636588.png" alt="image-20200410061636588" style="zoom:80%;"></p>
+<p>客户端1: 由于k1的值被更改, 相关命令不执行<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410061613062.png" alt="image-20200410061613062" style="zoom: 80%;"></p>
+<p>客户端2:<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410061636588.png" alt="image-20200410061636588" style="zoom:80%;"></p>
 <h5 id="不支持回滚"><a href="#不支持回滚" class="headerlink" title="不支持回滚"></a>不支持回滚</h5><ul>
 <li>Redis 命令只会因为<strong>错误的语法而失败</strong>（并且这些问题不能在入队时发现），或是命令用在了错误类型的键上面：这也就是说，从实用性的角度来说，失败的命令是由<strong>编程错误造成</strong>的，而这些错误应该在开发的过程中被发现，而<strong>不应该出现在生产环境</strong>中。</li>
 <li>因为不需要对回滚进行支持，所以 Redis 的内部可以保持简单且快速。</li>
 </ul>
 <p>有种观点认为 Redis 处理事务的做法会产生 bug ， 然而需要注意的是， 在通常情况下， 回滚并不能解决编程错误带来的问题。 举个例子， 如果你本来想通过 <a href="http://redis.cn/commands/incr.html" target="_blank" rel="noopener">INCR</a> 命令将键的值加上 1 ， 却不小心加上了 2 ， 又或者对错误类型的键执行了 <a href="http://redis.cn/commands/incr.html" target="_blank" rel="noopener">INCR</a> ， 回滚是没有办法处理这些情况的。](../image/Redis/image-20200410061754103.png)</p>
 <h4 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h4><p><strong>启动Redis时, 添加布隆过滤器的扩展库</strong></p>
-<h5 id="通过bitmap二进制位数组-映射函数"><a href="#通过bitmap二进制位数组-映射函数" class="headerlink" title="通过bitmap二进制位数组+映射函数"></a>通过bitmap二进制位数组+映射函数</h5><p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410063050476.png" alt="image-20200410063050476"></p>
+<h5 id="通过bitmap二进制位数组-映射函数"><a href="#通过bitmap二进制位数组-映射函数" class="headerlink" title="通过bitmap二进制位数组+映射函数"></a>通过bitmap二进制位数组+映射函数</h5><p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410063050476.png" alt="image-20200410063050476"></p>
 <p>三种方式, <strong>最好放在服务端</strong></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410063202681.png" alt="image-20200410063202681"></p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200411100955789.png" alt="image-20200411100955789" style="zoom:67%;">
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200410063202681.png" alt="image-20200410063202681"></p>
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411100955789.png" alt="image-20200411100955789" style="zoom:67%;">
 
 <h5 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1，访问redis.io</span><br><span class="line">2,modules</span><br><span class="line">3,访问RedisBloom的github</span><br><span class="line">      https:&#x2F;&#x2F;github.com&#x2F;RedisBloom&#x2F;RedisBloom</span><br><span class="line">4，linux中wget  *.zip</span><br><span class="line">5,yum install unzip</span><br><span class="line">6,unzip *.zip</span><br><span class="line">7,make</span><br><span class="line">8,cp bloom.so  &#x2F;opt&#x2F;mashibing&#x2F;redis5&#x2F;</span><br><span class="line">9,redis-server --loadmodule  &#x2F;opt&#x2F;mashibing&#x2F;redis5&#x2F;redisbloom.so</span><br><span class="line"></span><br><span class="line">10 ,redis-cli  </span><br><span class="line">11,bf.add  ooxx  abc</span><br><span class="line">bf.exits   abc</span><br><span class="line">bf.exits  sdfsdf</span><br><span class="line"></span><br><span class="line">12,cf.add   #  布谷鸟过滤器</span><br></pre></td></tr></table></figure>
 
-<h4 id="Redis作为缓存和数据库的区别"><a href="#Redis作为缓存和数据库的区别" class="headerlink" title="Redis作为缓存和数据库的区别"></a>Redis作为缓存和数据库的区别</h4><p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411103336509.png" alt="image-20200411103336509"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411112353530.png" alt="image-20200411112353530"></p>
+<h4 id="Redis作为缓存和数据库的区别"><a href="#Redis作为缓存和数据库的区别" class="headerlink" title="Redis作为缓存和数据库的区别"></a>Redis作为缓存和数据库的区别</h4><p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411103336509.png" alt="image-20200411103336509"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411112353530.png" alt="image-20200411112353530"></p>
 <h4 id="Redis回收策略"><a href="#Redis回收策略" class="headerlink" title="Redis回收策略"></a>Redis回收策略</h4><p>过期判定原理：</p>
 <ol>
 <li>被动访问时判定</li>
@@ -752,14 +752,14 @@
 <p>Redis LRU有个很重要的点，你通过调整每次回收时检查的采样数量，以实现<strong>调整</strong>算法的精度。这个参数可以通过以下的配置指令调整:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxmemory-samples 5</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411112228687.png" alt="image-20200411112228687"></p>
-<h4 id="Redis持久化-重点"><a href="#Redis持久化-重点" class="headerlink" title="Redis持久化 (重点!!!)"></a>Redis持久化 (重点!!!)</h4><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200625213446538.png" alt="image-20200625213446538" style="zoom: 80%;">
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411112228687.png" alt="image-20200411112228687"></p>
+<h4 id="Redis持久化-重点"><a href="#Redis持久化-重点" class="headerlink" title="Redis持久化 (重点!!!)"></a>Redis持久化 (重点!!!)</h4><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200625213446538.png" alt="image-20200625213446538" style="zoom: 80%;">
 
-<h5 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h5><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200411125836850.png" alt="image-20200411125836850" style="zoom:67%;">
+<h5 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h5><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411125836850.png" alt="image-20200411125836850" style="zoom:67%;">
 
 <h6 id="时点混乱"><a href="#时点混乱" class="headerlink" title="时点混乱"></a>时点混乱</h6><p>持久化的开始后, 还要记录现在修改的值</p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411122241429.png" alt="image-20200411122241429"></p>
-<h6 id="管道："><a href="#管道：" class="headerlink" title="管道："></a>管道：</h6><p>Linux管道概念: 前边命令的输出作为后边命令的输入<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200625214137737.png" alt="image-20200625214137737"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411122241429.png" alt="image-20200411122241429"></p>
+<h6 id="管道："><a href="#管道：" class="headerlink" title="管道："></a>管道：</h6><p>Linux管道概念: 前边命令的输出作为后边命令的输入<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200625214137737.png" alt="image-20200625214137737"></p>
 <p>1，衔接，前一个命令的输出作为后一个命令的输入</p>
 <p>2，管道会触发创建【子进程】<br>echo $$ |  more<br>echo $BASHPID | more</p>
 <p>$$ 高于 | </p>
@@ -768,7 +768,7 @@
 <li>父进程的数据，子进程可不可以看得到？</li>
 <li>常规思想，进程是数据隔离的！</li>
 <li>进阶思想，父进程其实可以让子进程看到数据！</li>
-<li>linux中<strong>export的环境变量，子进程的修改不会破坏父进程, 父进程的修改也不会破坏子进程</strong><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411123147116.png" alt="image-20200411123147116"></li>
+<li>linux中<strong>export的环境变量，子进程的修改不会破坏父进程, 父进程的修改也不会破坏子进程</strong><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411123147116.png" alt="image-20200411123147116"></li>
 </ul>
 <h6 id="写时复制"><a href="#写时复制" class="headerlink" title="写时复制"></a>写时复制</h6><ul>
 <li><p>copy on write：<strong>内核机制</strong></p>
@@ -779,14 +779,14 @@
 </li>
 <li><p>创建进程变快了</p>
 </li>
-<li><p>根据经验，不可能父子进程把所有数据都改一遍, 玩的是指针<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411122355696.png" alt="image-20200411122355696"></p>
-<p>要拷贝, 就是把真实数据的地址拷贝一份到需要持久化的进程中<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/1187916-20200304064424042-1801115546.png" alt="img" style="zoom: 50%;"></p>
+<li><p>根据经验，不可能父子进程把所有数据都改一遍, 玩的是指针<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411122355696.png" alt="image-20200411122355696"></p>
+<p>要拷贝, 就是把真实数据的地址拷贝一份到需要持久化的进程中<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/1187916-20200304064424042-1801115546.png" alt="img" style="zoom: 50%;"></p>
 </li>
 </ul>
 <p>其实持久化进程这个时候只是指向了数据的地址, 内存消耗并不多. 如果这时候, 原来的数据修改了, 怎么办呢?</p>
-<p>redis会开辟一块新的空间, 让写数据的地址指向新的空间<br>这样就不会影响持久化进程需要持久化的数据了<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/1187916-20200304064625052-1383412525.png" alt="img" style="zoom:50%;"></p>
+<p>redis会开辟一块新的空间, 让写数据的地址指向新的空间<br>这样就不会影响持久化进程需要持久化的数据了<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/1187916-20200304064625052-1383412525.png" alt="img" style="zoom:50%;"></p>
 <h6 id="创建子进程-fork-实现快照"><a href="#创建子进程-fork-实现快照" class="headerlink" title="创建子进程 fork(), 实现快照"></a>创建子进程 fork(), 实现快照</h6><p>8点创建子进程, 父子进程对数据的修改, 对方看不到</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200411124332883.png" alt="image-20200411124332883" style="zoom:80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411124332883.png" alt="image-20200411124332883" style="zoom:80%;">
 
 <h6 id="RDB实现方式"><a href="#RDB实现方式" class="headerlink" title="RDB实现方式"></a>RDB实现方式</h6><ul>
 <li><p>时点</p>
@@ -798,49 +798,49 @@
 <li><p>配置文件给出bgsave规则</p>
 </li>
 </ul>
-  <img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200411125836850.png" alt="image-20200411125836850" style="zoom:67%;">
+  <img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411125836850.png" alt="image-20200411125836850" style="zoom:67%;">
 
-<h6 id="RDB优缺点"><a href="#RDB优缺点" class="headerlink" title="RDB优缺点"></a>RDB优缺点</h6><h6 id><a href="#" class="headerlink" title></a><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411131300663.png" alt="image-20200411131300663"></h6><h5 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h5><ul>
+<h6 id="RDB优缺点"><a href="#RDB优缺点" class="headerlink" title="RDB优缺点"></a>RDB优缺点</h6><h6 id><a href="#" class="headerlink" title></a><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411131300663.png" alt="image-20200411131300663"></h6><h5 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h5><ul>
 <li>丢失数据少</li>
-<li>4.0以后AOF是一个混合体, 重写的AOF文件的时候, Redis先用RDB写到AOF文件, 加快了重写的过程<br>形成混合体文件 （默认开启）<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200626082350192.png" alt="image-20200626082350192"></li>
+<li>4.0以后AOF是一个混合体, 重写的AOF文件的时候, Redis先用RDB写到AOF文件, 加快了重写的过程<br>形成混合体文件 （默认开启）<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200626082350192.png" alt="image-20200626082350192"></li>
 </ul>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411132308192.png" alt="image-20200411132308192"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411133318275.png" alt="image-20200411133318275"></p>
-<p>AOF日志<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411144422698.png" alt="image-20200411144422698"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411132308192.png" alt="image-20200411132308192"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411133318275.png" alt="image-20200411133318275"></p>
+<p>AOF日志<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411144422698.png" alt="image-20200411144422698"></p>
 <p>bgsave, 执行rdb</p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411145209929.png" alt="image-20200411145209929"></p>
-<p>执行bgsave 生成 dump.rdb<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411145222593.png" alt="image-20200411145222593"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411145209929.png" alt="image-20200411145209929"></p>
+<p>执行bgsave 生成 dump.rdb<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411145222593.png" alt="image-20200411145222593"></p>
 <p>无论是混合模式还是单aof, 执行bgrewriteaof, 都只保留最后的数据, 没有历史记录</p>
-<p>*2 有两个元素<br>$6 描述元素的字符数<br><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175010233.png" alt="image-20200411175010233"></p>
+<p>*2 有两个元素<br>$6 描述元素的字符数<br><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175010233.png" alt="image-20200411175010233"></p>
 <p>开启混合模式 aof-use-rdb-preamble yes<br>执行BGREWRITEAOF<br>vi appendonly.aof, 出现RDB的内容</p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175038779.png" alt="image-20200411175038779"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175038779.png" alt="image-20200411175038779"></p>
 <p>误操作后, 只要不执行BGREWRITEAOF, 可以在日志中删除误操作记录<br>执行BGREWRITEAOF后, 日志就会同步成当前清空的状态</p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200626090920441.png" alt="image-20200626090920441" style="zoom: 80%;">
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200626090920441.png" alt="image-20200626090920441" style="zoom: 80%;">
 
 <h6 id="开启-修改配置文件"><a href="#开启-修改配置文件" class="headerlink" title="开启, 修改配置文件"></a>开启, 修改配置文件</h6><p>appendonly</p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175528382.png" alt="image-20200411175528382"></p>
-<h4 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h4><p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181020297.png" alt="image-20200411181020297"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181101641.png" alt="image-20200411181101641"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181123008.png" alt="image-20200411181123008"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411184710813.png" alt="image-20200411184710813"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411184729915.png" alt="image-20200411184729915"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411200355740.png" alt="image-20200411200355740"></p>
-<img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/../../../只要学不死 就往死里学/note/Redis/image/Redis/image-20200411201140595.png" alt="image-20200411201140595" style="zoom: 80%;">
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411175528382.png" alt="image-20200411175528382"></p>
+<h4 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h4><p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181020297.png" alt="image-20200411181020297"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181101641.png" alt="image-20200411181101641"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411181123008.png" alt="image-20200411181123008"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411184710813.png" alt="image-20200411184710813"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411184729915.png" alt="image-20200411184729915"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411200355740.png" alt="image-20200411200355740"></p>
+<img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411201140595.png" alt="image-20200411201140595" style="zoom: 80%;">
 
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411201313150.png" alt="image-20200411201313150"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411203600461.png" alt="image-20200411203600461"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411203621238.png" alt="image-20200411203621238"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411204905204.png" alt="image-20200411204905204"></p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411205051120.png" alt="image-20200411205051120"></p>
-<h4 id="击穿"><a href="#击穿" class="headerlink" title="击穿"></a>击穿</h4><p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214604205.png" alt="image-20200411214604205"></p>
-<h4 id="穿透"><a href="#穿透" class="headerlink" title="穿透"></a><strong>穿透</strong></h4><p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214620761.png" alt="image-20200411214620761"></p>
-<h4 id="雪崩"><a href="#雪崩" class="headerlink" title="雪崩"></a><strong>雪崩</strong></h4><p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214646499.png" alt="image-20200411214646499"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411201313150.png" alt="image-20200411201313150"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411203600461.png" alt="image-20200411203600461"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411203621238.png" alt="image-20200411203621238"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411204905204.png" alt="image-20200411204905204"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411205051120.png" alt="image-20200411205051120"></p>
+<h4 id="击穿"><a href="#击穿" class="headerlink" title="击穿"></a>击穿</h4><p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214604205.png" alt="image-20200411214604205"></p>
+<h4 id="穿透"><a href="#穿透" class="headerlink" title="穿透"></a><strong>穿透</strong></h4><p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214620761.png" alt="image-20200411214620761"></p>
+<h4 id="雪崩"><a href="#雪崩" class="headerlink" title="雪崩"></a><strong>雪崩</strong></h4><p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411214646499.png" alt="image-20200411214646499"></p>
 <h4 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a><strong>分布式锁</strong></h4><p>基于数据库实现分布式锁；<br>基于缓存（Redis等）实现分布式锁；<br>基于Zookeeper实现分布式锁；</p>
 <p><strong>Memcached</strong>：利用 Memcached 的 <code>add</code> 命令。此命令是原子性操作，只有在 <code>key</code> 不存在的情况下，才能 <code>add</code> 成功，也就意味着线程得到了锁。</p>
 <p><strong>Redis</strong>：和 Memcached 的方式类似，利用 Redis 的 <code>setnx</code> 命令。此命令同样是原子性操作，只有在 <code>key</code> 不存在的情况下，才能 <code>set</code> 成功。</p>
 <p><strong>Zookeeper</strong>：利用 Zookeeper 的顺序临时节点，来实现分布式锁和等待队列。Zookeeper 设计的初衷，就是为了实现分布式锁服务的。</p>
 <p><strong>Chubby</strong>：Google 公司实现的粗粒度分布式锁服务，底层利用了 Paxos 一致性算法。</p>
-<p><img src="/2020/08/03/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411215324099.png" alt="image-20200411215324099"></p>
+<p><img src="/2020/06/15/Redis%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/image-20200411215324099.png" alt="image-20200411215324099"></p>
 <h3 id="Spring-data-Redis"><a href="#Spring-data-Redis" class="headerlink" title="Spring data Redis"></a>Spring data Redis</h3><p>pom.xml</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-json<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -896,8 +896,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/08/03/MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E9%85%8D%E7%BD%AE/" rel="next" title="MySQL主从复制原理及配置">
-                <i class="fa fa-chevron-left"></i> MySQL主从复制原理及配置
+              <a href="/2020/06/13/MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" rel="next" title="MySQL索引优化案例分析">
+                <i class="fa fa-chevron-left"></i> MySQL索引优化案例分析
               </a>
             
           </div>
@@ -905,6 +905,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/21/Maven%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" rel="prev" title="Maven的基本使用">
+                Maven的基本使用 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -985,7 +989,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -997,10 +1001,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">5</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
