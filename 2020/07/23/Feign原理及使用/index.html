@@ -79,23 +79,23 @@
 
 
 
-<meta name="description" content="FeignOpenFeign是Netflix 开发的声明式、模板化的HTTP请求客户端。可以更加便捷、优雅地调用http api。 OpenFeign会根据带有注解的函数信息构建出网络请求的模板，在发送网络请求之前，OpenFeign会将函数的参数值设置到这些请求模板中。 feign主要是构建微服务消费端。只要使用OpenFeign提供的注解修饰定义网络请求的接口类，就可以使用该接口的实例发送RE">
+<meta name="description" content="微服务之间如何进行远程服务调用？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Feign原理及使用;">
-<meta property="og:url" content="http://yoursite.com/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="Feign原理及使用">
+<meta property="og:url" content="http://yoursite.com/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="为了明天！">
-<meta property="og:description" content="FeignOpenFeign是Netflix 开发的声明式、模板化的HTTP请求客户端。可以更加便捷、优雅地调用http api。 OpenFeign会根据带有注解的函数信息构建出网络请求的模板，在发送网络请求之前，OpenFeign会将函数的参数值设置到这些请求模板中。 feign主要是构建微服务消费端。只要使用OpenFeign提供的注解修饰定义网络请求的接口类，就可以使用该接口的实例发送RE">
-<meta property="og:image" content="http://yoursite.com/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413170210544.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413170342890.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413171817399.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413171910314.png">
-<meta property="article:published_time" content="2020-08-23T10:43:28.000Z">
-<meta property="article:modified_time" content="2020-08-23T10:51:14.548Z">
+<meta property="og:description" content="微服务之间如何进行远程服务调用？">
+<meta property="og:image" content="http://yoursite.com/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413170210544.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413170342890.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413171817399.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413171910314.png">
+<meta property="article:published_time" content="2020-07-23T10:43:28.000Z">
+<meta property="article:modified_time" content="2020-08-23T14:20:37.090Z">
 <meta property="article:author" content="OiPunk">
 <meta property="article:tag" content="Spring Cloud">
 <meta property="article:tag" content="框架">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413170210544.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413170210544.png">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/08/23/Feign原理及使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/23/Feign原理及使用/"/>
 
 
 
 
 
-  <title>Feign原理及使用; | 为了明天！</title>
+  <title>Feign原理及使用 | 为了明天！</title>
   
 
 
@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OiPunk">
@@ -311,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Feign原理及使用;</h1>
+          <h1 class="post-title" itemprop="name headline">Feign原理及使用</h1>
         
 
         <div class="post-meta">
@@ -323,8 +323,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-23T18:43:28+08:00">
-                2020-08-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-23T18:43:28+08:00">
+                2020-07-23
               </time>
             
 
@@ -352,6 +352,10 @@
           
 
           
+              <div class="post-description">
+                  微服务之间如何进行远程服务调用？
+              </div>
+          
 
         </div>
       </header>
@@ -373,8 +377,8 @@
 <h3 id="Feign和OpenFeign的关系"><a href="#Feign和OpenFeign的关系" class="headerlink" title="Feign和OpenFeign的关系"></a>Feign和OpenFeign的关系</h3><p>Feign本身不支持Spring MVC的注解，它有一套自己的注解</p>
 <p>OpenFeign是Spring Cloud 在Feign的基础上支持了Spring MVC的注解，如@RequesMapping等等。<br>OpenFeign的<code>@FeignClient</code>可以解析SpringMVC的@RequestMapping注解下的接口，<br>并通过动态代理的方式产生实现类，实现类中做负载均衡并调用其他服务。</p>
 <h2 id="声明式服务调用"><a href="#声明式服务调用" class="headerlink" title="声明式服务调用"></a>声明式服务调用</h2><p>provider方提供公用API包，Feign通过SpringMVC的注解来加载URI</p>
-<h3 id="1-创建项目User-Provider"><a href="#1-创建项目User-Provider" class="headerlink" title="1.创建项目User-Provider"></a>1.创建项目User-Provider</h3><p><img src="/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413170210544.png" alt="image-20200413170210544"></p>
-<h4 id="选择依赖"><a href="#选择依赖" class="headerlink" title="选择依赖"></a><strong>选择依赖</strong></h4><p><img src="/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413170342890.png" alt="image-20200413170342890"></p>
+<h3 id="1-创建项目User-Provider"><a href="#1-创建项目User-Provider" class="headerlink" title="1.创建项目User-Provider"></a>1.创建项目User-Provider</h3><p><img src="/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413170210544.png" alt="image-20200413170210544"></p>
+<h4 id="选择依赖"><a href="#选择依赖" class="headerlink" title="选择依赖"></a><strong>选择依赖</strong></h4><p><img src="/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413170342890.png" alt="image-20200413170342890"></p>
 <h3 id="2-创建项目User-API"><a href="#2-创建项目User-API" class="headerlink" title="2.创建项目User-API"></a>2.创建项目User-API</h3><p>依赖 spring-boot-starter-web</p>
 <h4 id="创建一个接口-RegisterApi"><a href="#创建一个接口-RegisterApi" class="headerlink" title="创建一个接口 RegisterApi"></a>创建一个接口 RegisterApi</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mashibing.UserAPI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户操作相关接口</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 一明哥</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/User"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RegisterApi</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/isAlive"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">isAlive</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -393,8 +397,8 @@
 
 
 
-<h3 id="4-Consumer调用"><a href="#4-Consumer调用" class="headerlink" title="4.Consumer调用"></a>4.Consumer调用</h3><h4 id="创建项目User-Consumer"><a href="#创建项目User-Consumer" class="headerlink" title="创建项目User-Consumer"></a>创建项目User-Consumer</h4><p><img src="/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413171817399.png" alt="image-20200413171817399"></p>
-<h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><p><img src="/2020/08/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413171910314.png" alt="image-20200413171910314"></p>
+<h3 id="4-Consumer调用"><a href="#4-Consumer调用" class="headerlink" title="4.Consumer调用"></a>4.Consumer调用</h3><h4 id="创建项目User-Consumer"><a href="#创建项目User-Consumer" class="headerlink" title="创建项目User-Consumer"></a>创建项目User-Consumer</h4><p><img src="/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413171817399.png" alt="image-20200413171817399"></p>
+<h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><p><img src="/2020/07/23/Feign%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/image-20200413171910314.png" alt="image-20200413171910314"></p>
 <h4 id="引入API-1"><a href="#引入API-1" class="headerlink" title="引入API"></a>引入API</h4><p>Pom.xml添加依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mashibing.User-API<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>User-API<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -505,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/08/13/MySQL%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%E8%AF%A6%E8%A7%A3/" rel="next" title="MySQL执行计划详解">
-                <i class="fa fa-chevron-left"></i> MySQL执行计划详解
+              <a href="/2020/07/23/%E5%9F%BA%E4%BA%8ERedis%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" rel="next" title="基于Redis的分布式锁实现原理">
+                <i class="fa fa-chevron-left"></i> 基于Redis的分布式锁实现原理
               </a>
             
           </div>
@@ -514,6 +518,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/23/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%B8%B8%E8%A7%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="prev" title="分布式锁常见解决方案;">
+                分布式锁常见解决方案; <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
